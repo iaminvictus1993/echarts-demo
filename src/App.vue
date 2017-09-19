@@ -5,45 +5,63 @@
       <div>Capital Position Monitoring Platform</div>
       <div>{{date}}</div>
     </div>
-    <el-row :gutter="10">
-      <!-- 第一列 -->
-      <el-col :span="7">
-        <el-button id="commonBgColor" type="info" size="large" :plain="true">指标总览</el-button>
-          <div :style="{ height: '300px'}" class="container">
-            <div v-for="item in items" class="item">
-              <div class="innerCon">
-                <div class="num">{{item[0].toFixed(2) + '亿'}}</div>
-                <div>{{item[1]}}</div>                
-              </div>
-            </div>
-          </div>
-          <BarStack></BarStack> 
-          <LineStack :obj="LineStackData"></LineStack>         
-      </el-col>
-      <!-- 第二列 -->
-      <el-col :span="10">
-          <el-row>  
-            <el-col :span="24">
-              <ChinaMap></ChinaMap>
-            </el-col>   
-          </el-row> 
-          <el-row>  
-            <el-col :span="12">
-              <Pie idName='a'></Pie>
-            </el-col>              
-            <el-col :span="12">
-              <Pie idName='b'></Pie>
-            </el-col>   
-          </el-row>   
-      </el-col>
-      <!-- 第三列 -->
-      <el-col :span="7">
-          <List></List> 
-          <List></List> 
-          <Bar></Bar>    
-      </el-col>
 
+    <el-row :gutter="10">
+      <draggable :options="{draggable1:'.draggableItem',group:'col'}">
+
+        <!-- 第一列 -->
+
+        <el-col :span="7" class="draggableItem">
+                                      <draggable :options="{group:'chart'}">
+          <div>
+            <el-button id="commonBgColor" type="info" size="large" :plain="true">指标总览
+            </el-button>
+            <div :style="{ height: '300px'}" class="container">
+              <div v-for="item in items" class="item">
+                <div class="innerCon">
+                  <div class="num">{{item[0].toFixed(2) + '亿'}}</div>
+                  <div>{{item[1]}}</div>                
+                </div>
+              </div>
+            </div>          
+          </div>
+            <BarStack></BarStack> 
+            <LineStack :obj="LineStackData"></LineStack>    
+                                      </draggable>     
+        </el-col>
+
+        <!-- 第二列 -->
+
+        <el-col :span="10" class="draggableItem">
+            <el-row>  
+              <el-col :span="24">
+                <ChinaMap></ChinaMap>
+              </el-col>   
+            </el-row> 
+            <el-row >  
+                                      
+              <el-col :span="12">
+                <Pie idName='a'></Pie>
+              </el-col>              
+              <el-col :span="12">
+                <Pie idName='b' :obj="pieObj"></Pie>
+              </el-col> 
+            </el-row>   
+        </el-col>
+
+        <!-- 第三列 -->
+
+        <el-col :span="7" class="draggableItem">
+          <draggable :options="{group:'chart'}" @end="onEnd">
+            <List :type="2"></List> 
+            <List :type="1"></List> 
+            <Bar></Bar>
+          </draggable>
+        </el-col>
+
+      </draggable >
     </el-row>
+
   </div>
 </template>
 
@@ -56,13 +74,31 @@ import ChinaMap from './components/ChinaMap'
 import List from './components/List'
 import moment from 'moment'
 import api from './api/api.js'
+import draggable from 'vuedraggable'
 export default {
   name: 'app',
   data(){
     return {
       date: moment().format('YYYY-MM-DD HH:mm:ss'),
       items: [[4.81,'实时超备'],[4.81,'可用资金'],[14.81,'预测超备'],[10.00,'目标超备'],],
-      LineStackData: api.getLineStackData((new Date()).getTime())
+      LineStackData: api.getLineStackData((new Date()).getTime()),
+      pieObj:{
+          name: '各业务类型交易总额占比分析',
+          type: 2,
+          data:[
+              {value:21, name:this.idName||'同业业务'},
+              {value:31, name:'贷款'},
+              {value:22, name:'存款'},          
+              {value:6, name:'买入返售'},          
+              {value:9, name:'卖出回购'},          
+              {value:11, name:'其它'}
+          ]
+      }
+    }
+  },
+  methods:{
+    onEnd(e){
+      console.log(e);
     }
   },
   created(){
@@ -78,7 +114,8 @@ export default {
     Bar,
     BarStack,
     ChinaMap,
-    List
+    List,
+    draggable
   }
 }
 </script>
@@ -160,5 +197,8 @@ export default {
       }
     }
   }
-
+.draggableItem{
+  // background-color: black;
+  padding-top: 20px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="commonTitle setMargin">各渠道总额占比分析</div> -->
-        <el-button id="commonBgColor" class="setMargin" type="info" size="large" :plain="true">各渠道<br/>总额占比分析</el-button>
+        <el-button id="commonBgColor" class="setMargin" type="info" size="large" :plain="true">{{this.obj.type===1?'各渠道':'各业务类型'}}</br>{{this.obj.type===1?'总额占比分析':`交易总额占比分析`}}</el-button>
         <div :id="idName" :style="{height: '270px'}">
         </div>
     </div>
@@ -24,8 +24,9 @@ export default {
         default() {
             return {
                 name: '各渠道总额占比分析',
+                type: 1,
                 data:[
-                    {value:7, name:'超级网银'},
+                    {value:7, name:this.idName||'超级网银'},
                     {value:12, name:'同城票系统'},
                     {value:19, name:'小额支付系统'},          
                     {value:62, name:'大额支付系统'}
