@@ -1,7 +1,7 @@
 <template>
   <div>
 <!--     <div class="commonTitle" id="setHeight">当日来款TOP10(交易对手)</div> -->
-          <el-button id="commonBgColor" type="info" :size="large" :plain="true">当日来款<br/>TOP10(交易对手)</el-button>
+          <el-button id="commonBgColor" type="info" size="large" :plain="true">当日来款<br/>TOP10(交易对手)</el-button>
     <div id="map" :style="{height: '700px'}">
     </div>
   </div>

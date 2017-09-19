@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="commonTitle">实时头寸余额及账户余额监控</div> -->
-          <el-button id="commonBgColor" type="info" :size="large" :plain="true">实时头寸余额<br/>及账户余额监控</el-button>
+          <el-button id="commonBgColor" type="info" size="large" :plain="true">实时头寸余额<br/>及账户余额监控</el-button>
         <div id="line" :style="{height: '300px'}">
         </div>
     </div>
@@ -24,16 +24,6 @@ export default {
         type: Object
     }
   },
-  // computed: {
-  //   obj1:{
-  //       get() {
-  //         return this.obj
-  //       },
-  //       set(newValue) {
-  //         this.obj1 = newValue
-  //       }
-  //   }
-  // },
   watch: {
     obj(){
         let option = this.instance.getOption();
@@ -49,7 +39,6 @@ export default {
   },
   mounted() {
     const self = this;
-    console.log(this.obj.income)
     const line = echarts.init(document.getElementById('line'));
     this.instance = line;
     const option = {

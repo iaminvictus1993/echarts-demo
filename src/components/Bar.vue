@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="commonTitle">各分行机构交易总额占比分析</div> -->
-          <el-button id="commonBgColor" type="info" :size="large" :plain="true">各分行机构<br/>交易总额占比分析</el-button>
+          <el-button id="commonBgColor" type="info" size="large" :plain="true">各分行机构<br/>交易总额占比分析</el-button>
         <div id="bar" :style="{ height: '300px'}">
         </div>
     </div>

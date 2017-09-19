@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="commonTitle">实时交易流量控制</div> -->
-                <el-button id="commonBgColor" type="info" :size="large" :plain="true">各渠道<br/>总额占比分析</el-button>
+                <el-button id="commonBgColor" type="info" size="large" :plain="true">各渠道<br/>总额占比分析</el-button>
         <div id="barStack" :style="{ height: '300px'}">
         </div>        
     </div>

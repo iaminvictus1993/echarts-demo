@@ -1,7 +1,7 @@
 <template>
 <div id="list">
     <!-- <div class="commonTitle">当日截至当前时点来款TOP10</div>    -->
-          <el-button id="commonBgColor" type="info" :size="large" :plain="true">当日截至当前<br/>时点来款TOP10</el-button>    
+          <el-button id="commonBgColor" type="info" size="large" :plain="true">当日截至当前<br/>时点来款TOP10</el-button>    
     <div class="content">
         <div class="unit">单位 ：万元</div>
         <table >

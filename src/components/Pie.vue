@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="commonTitle setMargin">各渠道总额占比分析</div> -->
-        <el-button id="commonBgColor" class="setMargin" type="info" :size="large" :plain="true">各渠道<br/>总额占比分析</el-button>
+        <el-button id="commonBgColor" class="setMargin" type="info" size="large" :plain="true">各渠道<br/>总额占比分析</el-button>
         <div :id="idName" :style="{height: '270px'}">
         </div>
     </div>

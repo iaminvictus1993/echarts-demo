@@ -8,12 +8,7 @@
     <el-row :gutter="10">
       <!-- 第一列 -->
       <el-col :span="7">
-<!--           <div class="commonTitle">
-            <div class="item">
-              指标总览
-            </div>
-          </div> -->
-        <el-button id="commonBgColor" type="info" :size="large" :plain="true">指标总览</el-button>
+        <el-button id="commonBgColor" type="info" size="large" :plain="true">指标总览</el-button>
           <div :style="{ height: '300px'}" class="container">
             <div v-for="item in items" class="item">
               <div class="innerCon">
